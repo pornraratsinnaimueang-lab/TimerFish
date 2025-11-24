@@ -20,6 +20,12 @@ struct MainTabView: View {
                     Label("Timer", systemImage: "timer")
                 }
 
+            // New Fish Tank Minigame Placeholder Tab
+            Text("Fish Tank Minigame Placeholder")
+                .tabItem {
+                    Label("Aquarium", systemImage: "aquarium") // Using "aquarium" system image
+                }
+
             StoreView()
                 .tabItem {
                     Label("ร้านค้า", systemImage: "cart")
