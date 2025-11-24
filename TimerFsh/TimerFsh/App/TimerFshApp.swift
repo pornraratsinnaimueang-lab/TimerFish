@@ -71,16 +71,22 @@ struct TimerFshApp: App {
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     
-    @StateObject var viewModel = AuthViewModel()
-    
+    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var userService: UserService
+
     init() {
         FirebaseApp.configure()
+        
+        let authViewModel = AuthViewModel()
+        _authViewModel = StateObject(wrappedValue: authViewModel)
+        _userService = StateObject(wrappedValue: UserService(authViewModel: authViewModel))
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(viewModel)
+                .environmentObject(authViewModel)
+                .environmentObject(userService)
         }
     }
 }

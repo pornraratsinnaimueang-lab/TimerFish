@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ProfileView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var userService: UserService
+    
+    // We still need AuthViewModel for signing out
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     var body: some View {
-        if let user = viewModel.currentUser {
+        if let user = userService.currentUser {
             List {
                 Section {
                     HStack {
@@ -34,6 +40,28 @@ struct ProfileView: View {
                         }
                     }
                 }
+                
+                Section("Stats") {
+                    HStack {
+                        Text("Coins")
+                        Spacer()
+                        Text("\(user.coins)")
+                            .foregroundColor(.gray)
+                    }
+                    HStack {
+                        Text("Fish Count")
+                        Spacer()
+                        Text("\(user.fishInventory.count)")
+                            .foregroundColor(.gray)
+                    }
+                    HStack {
+                        Text("Furniture Count")
+                        Spacer()
+                        Text("\(user.furnitureInventory.count)")
+                            .foregroundColor(.gray)
+                    }
+                }
+
                 Section("General") {
                     HStack {
                         SettingRowView(imageName: ("gear"), title: "Version", tintColor: Color(.systemGray))
@@ -47,7 +75,7 @@ struct ProfileView: View {
                 }
                 Section("Account") {
                     Button {
-                        viewModel.signOut()
+                        authViewModel.signOut()
                     } label: {
                         SettingRowView(imageName: ("arrow.left.circle.fill"), title: "Sign out", tintColor: Color(.red))
                     }
@@ -67,8 +95,7 @@ struct ProfileView: View {
 }
 
 #Preview {
-    let vm = AuthViewModel()
-    vm.currentUser = .MOCK_USER
-    return ProfileView()
-        .environmentObject(vm)
+    ProfileView()
+        .environmentObject(UserService.MOCK_SERVICE)
+        .environmentObject(AuthViewModel()) // Still needs a dummy auth view model
 }

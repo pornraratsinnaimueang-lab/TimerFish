@@ -94,6 +94,7 @@
 				6EAD49432ECC36AE0003517B /* TimerFsh */,
 				6EAD49512ECC36B00003517B /* TimerFshTests */,
 				6EAD495B2ECC36B00003517B /* TimerFshUITests */,
+				B064A8C22ED44AE400DAC67B /* Frameworks */,
 				6EAD49422ECC36AE0003517B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +107,13 @@
 				6EAD49582ECC36B00003517B /* TimerFshUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B064A8C22ED44AE400DAC67B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -51,7 +51,7 @@ struct LoginView: View {
                         Image(systemName: "arrow.right")
                     }
                     .foregroundColor(.white)
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                    .frame(maxWidth: .infinity, minHeight: 48)
                 }
                 .background(Color(.systemBlue))
                 .disabled(!formIsValid)
